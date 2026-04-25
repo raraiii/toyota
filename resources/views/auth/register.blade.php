@@ -10,7 +10,7 @@
             
             <div class="text-center mb-10">
                 <h2 class="text-3xl font-800 text-slate-900 tracking-tight">Registration</h2>
-                <p class="text-slate-500 mt-2 font-medium text-sm">Create your professional account today</p>
+              
             </div>
 
             <form id="final-form" action="{{ route('register') }}" method="POST" class="space-y-5">
