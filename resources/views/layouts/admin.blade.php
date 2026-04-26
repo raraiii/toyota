@@ -150,11 +150,7 @@
                     <i class="bi bi-person-plus-fill"></i> Akun Sales
                 </a>
             </li>
-            <li>
-                <a href="#" class="">
-                    <i class="bi bi-gear-fill"></i> Pengaturan
-                </a>
-            </li>
+           
         </ul>
 
         <div class="sidebar-footer text-center w-100 pb-3" style="font-size: 11px; color: rgba(255,255,255,0.6);">
