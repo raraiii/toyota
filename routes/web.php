@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\OtpController;
 use App\Http\Controllers\Admin\DashboardController as AdminController;
 use App\Http\Controllers\User\DashboardController as UserController;
-use App\Http\Controllers\Admin\MobilController;
+use App\Http\Controllers\Sales\MobilController;
 use App\Http\Controllers\Admin\SalesController;
 
 Auth::routes();
@@ -19,8 +19,11 @@ Route::get('/', function () {
 Auth::routes();
 
 // --- ROUTE USER (Folder User) ---
+// --- ROUTE USER ---
 Route::middleware(['auth', 'role:user,admin'])->prefix('user')->group(function () {
     Route::get('/dashboard', [UserController::class, 'index'])->name('user.dashboard');
+    // Tambahkan route show ini
+    Route::get('/mobil/{id}', [UserController::class, 'show'])->name('user.mobil.show');
 });
 
 // --- ROUTE ADMIN ---
@@ -29,7 +32,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
 
     // UBAH BARIS INI:
     // Tambahkan prefix 'admin.' agar sesuai dengan yang Anda panggil di Blade
-    Route::resource('mobil', MobilController::class)->names('admin.mobil');
+   
     // Tambahkan ->name() pada route sales kamu
 Route::get('/sales', [SalesController::class, 'index'])->name('admin.sales.index');
 Route::get('/sales/create', [SalesController::class, 'create'])->name('admin.sales.create');
@@ -46,6 +49,16 @@ Route::delete('/sales/{id}', [SalesController::class, 'destroy'])->name('admin.s
 // Route untuk Import & Download Template
 Route::post('/sales/import', [SalesController::class, 'import'])->name('sales.import');
 Route::get('/sales/template', [SalesController::class, 'downloadTemplate'])->name('sales.download-template');
+});
+
+// --- ROUTE SALES ---
+Route::middleware(['auth', 'role:sales'])->prefix('sales')->group(function () {
+    Route::get('/dashboard', [App\Http\Controllers\Sales\DashboardController::class, 'index'])->name('sales.dashboard');
+    Route::resource('mobil', App\Http\Controllers\Sales\MobilController::class)->names('sales.mobil');
+    
+    // Route Profil Baru
+    Route::get('/profil', [App\Http\Controllers\Sales\ProfilController::class, 'index'])->name('sales.profil.index');
+    Route::put('/profil', [App\Http\Controllers\Sales\ProfilController::class, 'update'])->name('sales.profil.update');
 });
 
 // Route Bebas Login (API/Utility)

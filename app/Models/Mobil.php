@@ -6,12 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Mobil extends Model
 {
-    // Tambahkan baris ini
     protected $table = 'mobil';
-
-    // Pastikan fillable juga sudah diisi agar bisa di-save ke database
     protected $fillable = [
-        'nama_mobil', 'tahun', 'km', 'warna', 'kategori', 
-        'foto', 'nama_pemilik', 'no_telp', 'email', 'alamat'
+    'user_id', 'nama_mobil', 'tahun', 'km', 'warna', 'kategori', 'deskripsi',
+    'nama_pemilik', 'telp_pemilik', 'email_pemilik', 'alamat_pemilik', 'fotos', 'videos'
+];
+
+    protected $casts = [
+        'fotos' => 'array',
+        'videos' => 'array'
     ];
+
+    public function sales() {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

@@ -36,7 +36,7 @@
                             <th class="ps-4 py-3 text-uppercase text-secondary fw-semibold d-none d-md-table-cell" style="font-size: 0.75rem; letter-spacing: 0.5px; width: 5%;">No</th>
                             <th class="ps-4 ps-md-2 py-3 text-uppercase text-secondary fw-semibold" style="font-size: 0.75rem; letter-spacing: 0.5px; width: 8%;">Foto</th>
                             <th class="py-3 text-uppercase text-secondary fw-semibold" style="font-size: 0.75rem; letter-spacing: 0.5px;">Nama Sales</th>
-                            <th class="py-3 text-uppercase text-secondary fw-semibold d-none d-md-table-cell" style="font-size: 0.75rem; letter-spacing: 0.5px;">Username</th>
+                            <th class="py-3 text-uppercase text-secondary fw-semibold d-none d-md-table-cell" style="font-size: 0.75rem; letter-spacing: 0.5px;">Email</th>
                             <th class="py-3 text-uppercase text-secondary fw-semibold d-none d-sm-table-cell" style="font-size: 0.75rem; letter-spacing: 0.5px;">No. Telepon</th>
                             <th class="py-3 text-uppercase text-secondary fw-semibold text-center" style="font-size: 0.75rem; letter-spacing: 0.5px; width: 12%;">Status</th>
                             <th class="pe-4 py-3 text-uppercase text-secondary fw-semibold text-center" style="font-size: 0.75rem; letter-spacing: 0.5px; width: 15%;">Aksi</th>
@@ -51,10 +51,10 @@
                             </td>
                             <td>
                                 <div class="fw-bold text-dark">{{ $item->name }}</div>
-                                <div class="d-md-none text-secondary small">{{ $item->username }}</div>
+                                <div class="d-md-none text-secondary small">{{ $item->email }}</div>
                                 <div class="d-sm-none text-muted small" style="font-size: 0.7rem;">{{ $item->nomor_telepon }}</div>
                             </td>
-                            <td class="text-secondary d-none d-md-table-cell">{{ $item->username }}</td>
+                            <td class="text-secondary d-none d-md-table-cell">{{ $item->email }}</td>
                             <td class="text-secondary d-none d-sm-table-cell">{{ $item->nomor_telepon }}</td>
                             
                             <td class="text-center">
@@ -143,7 +143,7 @@
                     <div class="mb-3">
                         <i class="bi bi-file-earmark-excel-fill text-success" style="font-size: 3rem;"></i>
                     </div>
-                    <p class="text-muted mb-4 small">Unggah file Excel (.xlsx) dengan format kolom:<br><strong class="text-dark">Nama, Username, Password, No Telepon</strong></p>
+                    <p class="text-muted mb-4 small">Unggah file Excel (.xlsx) dengan format kolom:<br><strong class="text-dark">Nama, Email, Password, No Telepon</strong></p>
                     
                     <div class="text-start">
                         <label class="small fw-semibold mb-1 text-dark">Pilih File Excel</label>
