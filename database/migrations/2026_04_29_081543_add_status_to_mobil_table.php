@@ -9,11 +9,12 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-   public function up(): void {
-    Schema::table('mobil', function (Blueprint $table) {
-        $table->text('deskripsi')->nullable()->after('kategori');
-    });
-}
+    public function up(): void
+    {
+        Schema::table('mobil', function (Blueprint $table) {
+            $table->string('status')->default('inventory');
+        });
+    }
 
     /**
      * Reverse the migrations.

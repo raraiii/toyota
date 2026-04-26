@@ -7,6 +7,17 @@
         <a href="{{ route('sales.mobil.index') }}" class="btn btn-light border rounded-pill px-4 fw-bold">Batal</a>
     </div>
 
+    {{-- Error Display --}}
+    @if ($errors->any())
+        <div class="alert alert-danger rounded-4 shadow-sm mb-4">
+            <ul class="mb-0">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <form action="{{ route('sales.mobil.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row g-4">

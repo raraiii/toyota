@@ -150,6 +150,16 @@
                     <i class="bi bi-person-plus-fill"></i> Akun Sales
                 </a>
             </li>
+            <li>
+                <a href="{{ route('admin.inventory.index') }}" class="{{ request()->routeIs('admin.inventory.*') ? 'active' : '' }}">
+                    <i class="bi bi-box-seam"></i> Inventory
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.survei.index') }}">
+                    <i class="bi bi-search"></i> Survei
+                </a>
+            </li>
            
         </ul>
 

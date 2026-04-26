@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\DashboardController as AdminController;
 use App\Http\Controllers\User\DashboardController as UserController;
 use App\Http\Controllers\Sales\MobilController;
 use App\Http\Controllers\Admin\SalesController;
+use App\Http\Controllers\Admin\InventoryController;
 
 Auth::routes();
 
@@ -34,23 +35,31 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     // Tambahkan prefix 'admin.' agar sesuai dengan yang Anda panggil di Blade
    
     // Tambahkan ->name() pada route sales kamu
-Route::get('/sales', [SalesController::class, 'index'])->name('admin.sales.index');
-Route::get('/sales/create', [SalesController::class, 'create'])->name('admin.sales.create');
-Route::post('/sales', [SalesController::class, 'store'])->name('admin.sales.store');
+    Route::get('/sales', [SalesController::class, 'index'])->name('admin.sales.index');
+    Route::get('/sales/create', [SalesController::class, 'create'])->name('admin.sales.create');
+    Route::post('/sales', [SalesController::class, 'store'])->name('admin.sales.store');
 
-Route::post('/sales/reset-password/{id}', [SalesController::class, 'resetPassword'])->name('admin.sales.reset-password');
+    Route::post('/sales/reset-password/{id}', [SalesController::class, 'resetPassword'])->name('admin.sales.reset-password');
 
-// Route untuk ubah status aktif/tidak aktif
-Route::patch('/sales/{id}/toggle-status', [SalesController::class, 'toggleStatus'])->name('admin.sales.toggle');
+    // Route untuk ubah status aktif/tidak aktif
+    Route::patch('/sales/{id}/toggle-status', [SalesController::class, 'toggleStatus'])->name('admin.sales.toggle');
 
-// Route untuk hapus akun
-Route::delete('/sales/{id}', [SalesController::class, 'destroy'])->name('admin.sales.destroy');
+    // Route untuk hapus akun
+    Route::delete('/sales/{id}', [SalesController::class, 'destroy'])->name('admin.sales.destroy');
 
-// Route untuk Import & Download Template
-Route::post('/sales/import', [SalesController::class, 'import'])->name('sales.import');
-Route::get('/sales/template', [SalesController::class, 'downloadTemplate'])->name('sales.download-template');
-});
+    // Route untuk Import & Download Template
+    Route::post('/sales/import', [SalesController::class, 'import'])->name('sales.import');
+    Route::get('/sales/template', [SalesController::class, 'downloadTemplate'])->name('sales.download-template');
 
+    // Route untuk Inventory
+    Route::get('/inventory', [InventoryController::class, 'index'])->name('admin.inventory.index');});
+
+    // Route untuk ke survei
+    Route::post('/mobil/{id}/survei', [InventoryController::class, 'keSurvei'])->name('admin.mobil.survei');
+    Route::get('/survei', [InventoryController::class, 'survei'])->name('admin.survei.index');
+
+
+    
 // --- ROUTE SALES ---
 Route::middleware(['auth', 'role:sales'])->prefix('sales')->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\Sales\DashboardController::class, 'index'])->name('sales.dashboard');
