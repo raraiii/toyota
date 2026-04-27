@@ -20,7 +20,7 @@ class SalesTemplateExport implements FromArray, WithHeadings, ShouldAutoSize, Wi
 
     public function headings(): array
     {
-        return ['Nama', 'Username', 'Password', 'No Telepon'];
+        return ['Nama', 'email', 'Password', 'No Telepon'];
     }
 
     public function styles(Worksheet $sheet)

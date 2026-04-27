@@ -9,20 +9,20 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
 class SalesImport implements ToModel, WithHeadingRow
 {
-    public function model(array $row)
-    {
-        // Hindari duplikat username
-        if (User::where('username', $row['username'])->exists()) {
-            return null;
-        }
-
-       return new User([
-        'name'     => $row[0],
-        'email'    => $row[1], // Pastikan index ini benar-benar email di file excelnya
-        'nomor_telepon' => $row[2],
-        'password' => Hash::make($row[3]),
-        'role'     => 'sales',
-        'is_active'=> true,
-    ]);
+   public function model(array $row)
+{
+    // Gunakan nama kolom dari header Excel (case-insensitive/slug)
+    if (User::where('email', $row['email'])->exists()) {
+        return null;
     }
+
+    return new User([
+        'name'          => $row['nama'],        // Sesuai header "Nama"
+        'email'      => $row['email'],    // Sesuai header "Username"
+        'password'      => Hash::make($row['password']), // Sesuai header "Password"
+        'nomor_telepon' => $row['no_telepon'], // Sesuai header "No Telepon"
+        'role'          => 'sales',
+        'is_active'     => true,
+    ]);
+}
 }
