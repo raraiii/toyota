@@ -1,13 +1,33 @@
 @extends('layouts.admin')
 
 @section('content')
-<h4 class="mb-4">Data Mobil - Survei</h4>
+
+<h4>Status Mobil</h4>
 
 @if(session('success'))
     <div class="alert alert-success">
         {{ session('success') }}
     </div>
 @endif
+
+<div class="mb-3 d-flex gap-2">
+
+    <a href="{{ route('admin.status.index', 'all') }}"
+       class="btn btn-sm {{ $filter == 'all' ? 'btn-dark' : 'btn-outline-dark' }}">
+        Semua
+    </a>
+
+    <a href="{{ route('admin.status.index', 'lolos') }}"
+       class="btn btn-sm {{ $filter == 'lolos' ? 'btn-success' : 'btn-outline-success' }}">
+        Lolos
+    </a>
+
+    <a href="{{ route('admin.status.index', 'gagal') }}"
+       class="btn btn-sm {{ $filter == 'gagal' ? 'btn-danger' : 'btn-outline-danger' }}">
+        Tidak Lolos
+    </a>
+
+</div>
 
 <table class="table table-bordered">
     <thead>
@@ -19,45 +39,38 @@
             <th>KM</th>
             <th>Warna</th>
             <th>Kategori</th>
-            <th>Aksi</th>
+            <th>Status</th>
         </tr>
     </thead>
     <tbody>
         @forelse($mobil as $item)
         <tr>
             <td>{{ $loop->iteration }}</td>
-
             <td>
                 @if($item->fotos && count($item->fotos) > 0)
                     <img src="{{ asset('storage/' . $item->fotos[0]) }}" width="80">
                 @else
                     -
                 @endif
-            </td>
-
             <td>{{ $item->nama_mobil }}</td>
             <td>{{ $item->tahun }}</td>
             <td>{{ $item->km }}</td>
             <td>{{ $item->warna }}</td>
             <td>{{ $item->kategori }}</td>
-
             <td>
-                <form action="{{ route('admin.mobil.lolos', $item->id) }}" method="POST" style="display:inline;">
-                    @csrf
-                    <button class="btn btn-success btn-sm">Lolos</button>
-                </form>
-
-                <form action="{{ route('admin.mobil.gagal', $item->id) }}" method="POST" style="display:inline;">
-                    @csrf
-                    <button class="btn btn-danger btn-sm">Gagal</button>
-                </form>
+                @if($item->status == 'deal')
+                    <span class="badge bg-success">Lolos</span>
+                @else
+                    <span class="badge bg-danger">Tidak Lolos</span>
+                @endif
             </td>
         </tr>
         @empty
         <tr>
-            <td colspan="8" class="text-center">Belum ada data survei</td>
+            <td colspan="3" class="text-center">Tidak ada data</td>
         </tr>
         @endforelse
     </tbody>
 </table>
+
 @endsection

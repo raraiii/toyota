@@ -58,6 +58,13 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::post('/mobil/{id}/survei', [InventoryController::class, 'keSurvei'])->name('admin.mobil.survei');
     Route::get('/survei', [InventoryController::class, 'survei'])->name('admin.survei.index');
 
+    // Route untuk status
+    Route::get('/status/{filter?}', [InventoryController::class, 'status'])->name('admin.status.index');
+    Route::post('/mobil/{id}/lolos', [InventoryController::class, 'lolos'])
+    ->name('admin.mobil.lolos');
+
+Route::post('/mobil/{id}/gagal', [InventoryController::class, 'gagal'])
+    ->name('admin.mobil.gagal');
 
     
 // --- ROUTE SALES ---

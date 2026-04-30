@@ -160,6 +160,12 @@
                     <i class="bi bi-search"></i> Survei
                 </a>
             </li>
+            <li>
+                <a href="{{ route('admin.status.index') }}"
+                class="{{ request()->routeIs('admin.status.*') ? 'active' : '' }}">
+                    <i class="bi bi-bar-chart-fill"></i> Status
+                </a>
+            </li>
            
         </ul>
 

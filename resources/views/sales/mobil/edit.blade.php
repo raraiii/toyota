@@ -15,10 +15,65 @@
                 <div class="card border-0 shadow-sm rounded-5 p-4 p-lg-5 mb-4">
                     <h5 class="fw-bold mb-4 text-danger text-uppercase">Detail Kendaraan</h5>
                     <div class="row g-3">
-                        <div class="col-12"><label class="small fw-bold text-muted">NAMA MOBIL</label><input type="text" name="nama_mobil" class="form-control rounded-4 border-0 bg-light" value="{{ $mobil->nama_mobil }}" required></div>
-                        <div class="col-md-6"><label class="small fw-bold text-muted">TAHUN</label><input type="number" name="tahun" class="form-control rounded-4 border-0 bg-light" value="{{ $mobil->tahun }}" required></div>
-                        <div class="col-md-6"><label class="small fw-bold text-muted text-uppercase">KM</label><input type="number" name="km" class="form-control rounded-4 border-0 bg-light" value="{{ $mobil->km }}" required></div>
-                        <div class="col-12"><label class="small fw-bold text-muted">DESKRIPSI</label><textarea name="deskripsi" rows="5" class="form-control rounded-4 border-0 bg-light">{{ $mobil->deskripsi }}</textarea></div>
+                        {{-- NAMA MOBIL --}}
+                        <div class="col-12">
+                            <label class="small fw-bold text-muted">NAMA MOBIL</label>
+                            <input type="text" name="nama_mobil"
+                                class="form-control rounded-4 border-0 bg-light"
+                                value="{{ $mobil->nama_mobil }}" required>
+                        </div>
+
+                        {{-- TAHUN --}}
+                        <div class="col-md-6">
+                            <label class="small fw-bold text-muted">TAHUN</label>
+                            <input type="number" name="tahun"
+                                class="form-control rounded-4 border-0 bg-light"
+                                value="{{ $mobil->tahun }}" required>
+                        </div>
+
+                        {{-- KM --}}
+                        <div class="col-md-6">
+                            <label class="small fw-bold text-muted text-uppercase">KM</label>
+                            <input type="number" name="km"
+                                class="form-control rounded-4 border-0 bg-light"
+                                value="{{ $mobil->km }}" required>
+                        </div>
+
+                        {{-- WARNA --}}
+                        <div class="col-md-6">
+                            <label class="small fw-bold text-muted">WARNA</label>
+                            <input type="text" name="warna"
+                                class="form-control rounded-4 border-0 bg-light"
+                                value="{{ $mobil->warna }}" required>
+                        </div>
+
+                        {{-- KATEGORI --}}
+                        <div class="col-md-6">
+                            <label class="small fw-bold text-muted">KATEGORI</label>
+                            <select name="kategori" class="form-select rounded-4 border-0 bg-light" required>
+
+                                <option value="fleet" {{ $mobil->kategori == 'fleet' ? 'selected' : '' }}>
+                                    Fleet
+                                </option>
+
+                                <option value="rental" {{ $mobil->kategori == 'rental' ? 'selected' : '' }}>
+                                    Rental
+                                </option>
+
+                                <option value="used" {{ $mobil->kategori == 'used' ? 'selected' : '' }}>
+                                    Used Car
+                                </option>
+
+                            </select>
+                        </div>
+
+                        {{-- DESKRIPSI --}}
+                        <div class="col-12">
+                            <label class="small fw-bold text-muted">DESKRIPSI</label>
+                            <textarea name="deskripsi" rows="5"
+                                class="form-control rounded-4 border-0 bg-light">{{ $mobil->deskripsi }}</textarea>
+                        </div>
+
                     </div>
                 </div>
 
